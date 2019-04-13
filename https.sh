@@ -1,0 +1,154 @@
+#!/bin/bash
+#
+#----------------------------------------------------------------------- 
+#
+# If You Want to Recode For Your Famous Popularity Reasons
+# Yes You Are the really an Idiot Script Kiddie
+# Just Use It And Let The Code Do The Job
+# 
+# Reverie
+#
+# Automated Basic Pentest Tool
+# Version : 1.0
+# Coded by : Bagus Wiratma Adi
+#
+# Tested on : Parrot Linux 
+# I highly recommend using this tool by using Parrot Linux OS
+#
+# FUCK TO ALL SCRIPT KIDDIES AND UNDERGROUND HACKER SOCIETY
+#
+#-----------------------------------------------------------------------
+#
+clear
+#-------------
+#First Dialog
+#-------------
+echo "------------------------------------------------"
+echo ""
+echo "[ Reverie - Automated Pentest Tools ]"
+echo ""
+echo "[HTTP MODE]"
+echo ""
+echo "This Tool Designed For Parrot Linux"
+echo "So If You Use Another OS"
+echo "Maybe This Tool Not Working"
+echo ""
+echo "Coded By : Bagus Wiratma Adi"
+echo ""
+echo "Instagram : @baguswiratmaadi"
+echo "Email : baguswiratmaadi@gmail.com"
+echo ""
+echo "Do not scan government and private" 
+echo "IT objects without legal permission."
+echo ""
+echo "-----------------------------------------------------------"
+echo "Enter domain of your Target Below example --> site.com "
+read  A
+echo "Enter path of your output files example --> /root/Desktop"
+read  B
+echo "Starting Scanning Procedure..."
+echo ""
+sleep 1
+echo "You Can Sleep or Do Another Activity"
+echo "This Take Few Hours For Running Scanning Procedure."
+sleep 2
+echo "-----------------------------------------------------------"
+echo ""
+#----------------------
+#Information Gathering
+#----------------------
+#whois
+echo "starting whois scanning... :"
+whois $A > $B/whois.txt
+sleep 2
+echo "whois scanning done..."
+sleep 2
+#dnswalk
+echo "starting dnswalk scanning..." 
+dnswalk $A. > $B/dnswalk.txt
+sleep 2
+echo "dnswalk scanning done..."
+sleep 2 
+#nmap
+echo "starting nmap scanning..." 
+nmap -v -A -O $A > $B/nmap.txt
+sleep 2
+echo "nmap scanning done..."
+sleep 2
+#dmitry
+echo "starting dmitry scanning..."
+dmitry $A -o $B/dmitry.txt 
+echo "dmitry scanning done..."
+sleep 2
+#whatweb
+echo "starting whatweb scanning..."
+whatweb $A > $B/whatweb.txt
+echo "whatweb scanning done..."
+sleep 2
+
+#-----------------------------
+#SECURITY AUDITING
+#-----------------------------
+#Wafw00f
+echo "starting wafw00f scanning..."
+wafw00f $A > $B/wafw00f.txt
+echo "wafw00f scanning finished..."
+sleep 2
+#LBD
+echo "starting lbd scanning..."
+lbd $A > $B/lbd.txt
+echo "lbd scanning done..."
+sleep 2
+#SSLyze
+echo "starting sslyze scanning..."
+sslyze --heartbleed --sslv2 --sslv3 --tlsv1 --tlsv1_1 --tlsv1_2 --http_get $A > $B/sslyze.txt
+echo "sslyze scanning done..."
+sleep 2
+#TLSSLED
+echo "starting sslyze scanning..."
+tlssled $A 443 > $B/tlssled.txt
+echo "sslyze scanning done..."
+sleep 2
+#automater
+echo "starting automater scanning..."
+automater -V $A > $B/automater.txt
+echo "automater scanning done..."
+sleep 2
+#nikto
+echo "starting nikto scanning..."
+nikto -h https://$A > $B/nikto.txt
+echo "nikto scanning done..."
+sleep 2
+
+#----------
+#Reporting
+#----------
+echo "all scanning procedure finished generating pentest report..."
+echo PCFkb2N0eXBlIGh0bWw+CjwhLS0KUmV2ZXJpZSAxLjAgQ29kZWQgQnkgQmFndXMgV2lyYXRtYSBBZGkKUmVjb2RlIElzIERvZXNuJ3QgTWFrZSBZb3UgQSBDb2RlcgpCZSBDcmVhdGl2ZSBOaWdnYQotLT4KPGh0bWwgbGFuZz0iZW4iPgo8aGVhZD48L2hlYWQ+CiAgPHRpdGxlPlJldmVyaWUgQXV0byBQZW50ZXN0IFJlcG9ydDwvdGl0bGU+CiAgPG1ldGEgY2hhcnNldD0idXRmLTgiIC8+CiAgPG1ldGEgaHR0cC1lcXVpdj0iWC1VQS1Db21wYXRpYmxlIiBjb250ZW50PSJjaHJvbWU9MSIgLz4KICA8c3R5bGU+CiAgYSBzbWFsbCwgYTpob3ZlciBzbWFsbCB7CiAgICBjb2xvcjogIzc3Nwp9CgpkdCwgdGggewogICAgY29sb3I6ICM0NDQKfQoKYm9keSB7CiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjZmZmOwogICAgcGFkZGluZzogNTBweDsKICAgIGZvbnQ6IDE0cHgvMS41Ik5vdG8gU2FucyIsICJIZWx2ZXRpY2EgTmV1ZSIsIEhlbHZldGljYSwgQXJpYWwsIHNhbnMtc2VyaWY7CiAgICBjb2xvcjogIzAwMDAwMDsKICAgIGZvbnQtd2VpZ2h0OiA0MDAKfQoKZm9vdGVyLCBoZWFkZXIgewogICAgZmxvYXQ6IGxlZnQ7CiAgICBwb3NpdGlvbjogZml4ZWQ7CiAgICAtd2Via2l0LWZvbnQtc21vb3RoaW5nOiBzdWJwaXhlbC1hbnRpYWxpYXNlZAp9CgpkdCwgc3Ryb25nLCBsaT5hIHsKICAgIGZvbnQtd2VpZ2h0OiA3MDAKfQoKaDEsIGgyLCBoMywgaDQsIGg1LCBoNiB7CiAgICBjb2xvcjogIzIyMjsKICAgIG1hcmdpbjogMCAwIDIwcHgKfQoKZGwsIG9sLCBwLCBwcmUsIHRhYmxlLCB1bCB7CiAgICBtYXJnaW46IDAgMCAyMHB4Cn0KCmgxLCBoMiwgaDMgewogICAgbGluZS1oZWlnaHQ6IDEuMQp9CgpoMSB7CiAgICBmb250LXNpemU6IDI4cHgKfQoKaDIgewogICAgY29sb3I6ICMzOTM5MzkKfQoKaDMsIGg0LCBoNSwgaDYgewogICAgY29sb3I6ICM0OTQ5NDkKfQoKYSB7CiAgICBjb2xvcjogIzM5YzsKICAgIHRleHQtZGVjb3JhdGlvbjogbm9uZQp9CgphOmhvdmVyIHsKICAgIGNvbG9yOiAjMDY5Cn0KCmEgc21hbGwgewogICAgZm9udC1zaXplOiAxMXB4OwogICAgbWFyZ2luLXRvcDogLS4zZW07CiAgICBkaXNwbGF5OiBibG9jawp9Cgoud3JhcHBlciB7CiAgICB3aWR0aDogODYwcHg7CiAgICBtYXJnaW46IDAgYXV0bwp9CgpibG9ja3F1b3RlIHsKICAgIGJvcmRlci1sZWZ0OiAxcHggc29saWQgI2U1ZTVlNTsKICAgIG1hcmdpbjogMDsKICAgIHBhZGRpbmc6IDAgMCAwIDIwcHg7CiAgICBmb250LXN0eWxlOiBpdGFsaWMKfQoKY29kZSwgcHJlIHsKICAgIGZvbnQtZmFtaWx5OiBNb25hY28sIEJpdHN0cmVhbSBWZXJhIFNhbnMgTW9ubywgTHVjaWRhIENvbnNvbGUsIFRlcm1pbmFsLCBDb25zb2xhcywgTGliZXJhdGlvbiBNb25vLCBEZWphVnUgU2FucyBNb25vLCBDb3VyaWVyIE5ldywgbW9ub3NwYWNlOwogICAgY29sb3I6ICMzMzM7CiAgICBmb250LXNpemU6IDEycHgKfQoKcHJlIHsKICAgIHBhZGRpbmc6IDhweCAxNXB4OwogICAgYmFja2dyb3VuZDogI2Y4ZjhmODsKICAgIGJvcmRlci1yYWRpdXM6IDVweDsKICAgIGJvcmRlcjogMXB4IHNvbGlkICNlNWU1ZTU7CiAgICBvdmVyZmxvdy14OiBhdXRvCn0KCnRhYmxlIHsKICAgIHdpZHRoOiAxMDAlOwogICAgYm9yZGVyLWNvbGxhcHNlOiBjb2xsYXBzZQp9Cgp0ZCwgdGggewogICAgdGV4dC1hbGlnbjogbGVmdDsKICAgIHBhZGRpbmc6IDVweCAxMHB4OwogICAgYm9yZGVyLWJvdHRvbTogMXB4IHNvbGlkICNlNWU1ZTUKfQoKaW1nIHsKICAgIG1heC13aWR0aDogMTAwJQp9CgpoZWFkZXIgewogICAgd2lkdGg6IDI3MHB4Cn0KCmhlYWRlciB1bCB7CiAgICBsaXN0LXN0eWxlOiBub25lOwogICAgaGVpZ2h0OiA0MHB4OwogICAgcGFkZGluZzogMDsKICAgIGJhY2tncm91bmQ6ICNmNGY0ZjQ7CiAgICBib3JkZXItcmFkaXVzOiA1cHg7CiAgICBib3JkZXI6IDFweCBzb2xpZCAjZTBlMGUwOwogICAgd2lkdGg6IDI3MHB4Cn0KCmhlYWRlciBsaSB7CiAgICB3aWR0aDogODlweDsKICAgIGZsb2F0OiBsZWZ0OwogICAgYm9yZGVyLXJpZ2h0OiAxcHggc29saWQgI2UwZTBlMDsKICAgIGhlaWdodDogNDBweAp9CgpoZWFkZXIgbGk6Zmlyc3QtY2hpbGQgYSB7CiAgICBib3JkZXItcmFkaXVzOiA1cHggMCAwIDVweAp9CgpoZWFkZXIgbGk6bGFzdC1jaGlsZCBhIHsKICAgIGJvcmRlci1yYWRpdXM6IDAgNXB4IDVweCAwCn0KCmhlYWRlciB1bCBhIHsKICAgIGxpbmUtaGVpZ2h0OiAxOwogICAgZm9udC1zaXplOiAxMXB4OwogICAgY29sb3I6ICM5OTk7CiAgICBkaXNwbGF5OiBibG9jazsKICAgIHRleHQtYWxpZ246IGNlbnRlcjsKICAgIHBhZGRpbmctdG9wOiA2cHg7CiAgICBoZWlnaHQ6IDM0cHgKfQoKaGVhZGVyIHVsIGE6aG92ZXIgewogICAgY29sb3I6ICM5OTkKfQoKaGVhZGVyIHVsIGE6YWN0aXZlIHsKICAgIGJhY2tncm91bmQtY29sb3I6ICNmMGYwZjAKfQoKc3Ryb25nIHsKICAgIGNvbG9yOiAjMjIyCn0KCmhlYWRlciB1bCBsaStsaStsaSB7CiAgICBib3JkZXItcmlnaHQ6IG5vbmU7CiAgICB3aWR0aDogODlweAp9CgpoZWFkZXIgdWwgYSBzdHJvbmcgewogICAgZm9udC1zaXplOiAxNHB4OwogICAgZGlzcGxheTogYmxvY2s7CiAgICBjb2xvcjogIzIyMgp9CgpzZWN0aW9uIHsKICAgIHdpZHRoOiA1MDBweDsKICAgIGZsb2F0OiByaWdodDsKICAgIHBhZGRpbmctYm90dG9tOiA1MHB4Cn0KCnNtYWxsIHsKICAgIGZvbnQtc2l6ZTogMTFweAp9CgpociB7CiAgICBib3JkZXI6IDA7CiAgICBiYWNrZ3JvdW5kOiAjZTVlNWU1OwogICAgaGVpZ2h0OiAxcHg7CiAgICBtYXJnaW46IDAgMCAyMHB4Cn0KCmZvb3RlciB7CiAgICB3aWR0aDogMjcwcHg7CiAgICBib3R0b206IDUwcHgKfQoKQG1lZGlhIHByaW50LCBzY3JlZW4gYW5kIChtYXgtd2lkdGg6IDk2MHB4KSB7CgogICAgZGl2LndyYXBwZXIgewogICAgICAgIHdpZHRoOiBhdXRvOwogICAgICAgIG1hcmdpbjogMAogICAgfQoKICAgIGZvb3RlciwgaGVhZGVyLCBzZWN0aW9uIHsKICAgICAgICBmbG9hdDogbm9uZTsKICAgICAgICBwb3NpdGlvbjogc3RhdGljOwogICAgICAgIHdpZHRoOiBhdXRvCiAgICB9CgogICAgaGVhZGVyIHsKICAgICAgICBwYWRkaW5nLXJpZ2h0OiAzMjBweAogICAgfQoKICAgIHNlY3Rpb24gewogICAgICAgIGJvcmRlcjogMXB4IHNvbGlkICNlNWU1ZTU7CiAgICAgICAgYm9yZGVyLXdpZHRoOiAxcHggMDsKICAgICAgICBwYWRkaW5nOiAyMHB4IDA7CiAgICAgICAgbWFyZ2luOiAwIDAgMjBweAogICAgfQoKICAgIGhlYWRlciBhIHNtYWxsIHsKICAgICAgICBkaXNwbGF5OiBpbmxpbmUKICAgIH0KCiAgICBoZWFkZXIgdWwgewogICAgICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTsKICAgICAgICByaWdodDogNTBweDsKICAgICAgICB0b3A6IDUycHgKICAgIH0KCn0KCkBtZWRpYSBwcmludCwgc2NyZWVuIGFuZCAobWF4LXdpZHRoOiA3MjBweCkgewoKICAgIGJvZHkgewogICAgICAgIHdvcmQtd3JhcDogYnJlYWstd29yZAogICAgfQoKICAgIGhlYWRlciB7CiAgICAgICAgcGFkZGluZzogMAogICAgfQoKICAgIGhlYWRlciBwLnZpZXcsIGhlYWRlciB1bCB7CiAgICAgICAgcG9zaXRpb246IHN0YXRpYwogICAgfQoKICAgIGNvZGUsIHByZSB7CiAgICAgICAgd29yZC13cmFwOiBub3JtYWwKICAgIH0KCn0KCkBtZWRpYSBwcmludCwgc2NyZWVuIGFuZCAobWF4LXdpZHRoOiA0ODBweCkgewoKICAgIGJvZHkgewogICAgICAgIHBhZGRpbmc6IDE1cHgKICAgIH0KCiAgICBoZWFkZXIgdWwgewogICAgICAgIHdpZHRoOiA5OSUKICAgIH0KCiAgICBoZWFkZXIgbGksIGhlYWRlciB1bCBsaStsaStsaSB7CiAgICAgICAgd2lkdGg6IDMzJQogICAgfQoKfQoKQG1lZGlhIHByaW50IHsKCiAgICBib2R5IHsKICAgICAgICBwYWRkaW5nOiAuNGluOwogICAgICAgIGZvbnQtc2l6ZTogMTJwdDsKICAgICAgICBjb2xvcjogIzQ0NAogICAgfQoKfQoKLyoKICAgQ29weXJpZ2h0IDIwMTQgR2l0SHViIEluYy4KCiAgIExpY2Vuc2VkIHVuZGVyIHRoZSBBcGFjaGUgTGljZW5zZSwgVmVyc2lvbiAyLjAgKHRoZSAiTGljZW5zZSIpOwogICB5b3UgbWF5IG5vdCB1c2UgdGhpcyBmaWxlIGV4Y2VwdCBpbiBjb21wbGlhbmNlIHdpdGggdGhlIExpY2Vuc2UuCiAgIFlvdSBtYXkgb2J0YWluIGEgY29weSBvZiB0aGUgTGljZW5zZSBhdAoKICAgICAgIGh0dHA6Ly93d3cuYXBhY2hlLm9yZy9saWNlbnNlcy9MSUNFTlNFLTIuMAoKICAgVW5sZXNzIHJlcXVpcmVkIGJ5IGFwcGxpY2FibGUgbGF3IG9yIGFncmVlZCB0byBpbiB3cml0aW5nLCBzb2Z0d2FyZQogICBkaXN0cmlidXRlZCB1bmRlciB0aGUgTGljZW5zZSBpcyBkaXN0cmlidXRlZCBvbiBhbiAiQVMgSVMiIEJBU0lTLAogICBXSVRIT1VUIFdBUlJBTlRJRVMgT1IgQ09ORElUSU9OUyBPRiBBTlkgS0lORCwgZWl0aGVyIGV4cHJlc3Mgb3IgaW1wbGllZC4KICAgU2VlIHRoZSBMaWNlbnNlIGZvciB0aGUgc3BlY2lmaWMgbGFuZ3VhZ2UgZ292ZXJuaW5nIHBlcm1pc3Npb25zIGFuZAogICBsaW1pdGF0aW9ucyB1bmRlciB0aGUgTGljZW5zZS4KCiovCgoucGwtbWIsIC5wbC1tZHIsIC5wbC1zciAucGwtY2NlIHsKICAgIGZvbnQtd2VpZ2h0OiA3MDAKfQoKLnBsLWMgewogICAgY29sb3I6ICM5Njk4OTYKfQoKLnBsLWMxLCAucGwtcyAucGwtdiB7CiAgICBjb2xvcjogIzAwODZiMwp9CgoucGwtZSwgLnBsLWVuIHsKICAgIGNvbG9yOiAjNzk1ZGEzCn0KCi5wbC1zIC5wbC1zMSwgLnBsLXNtaSB7CiAgICBjb2xvcjogIzMzMwp9CgoucGwtZW50IHsKICAgIGNvbG9yOiAjNjNhMzVjCn0KCi5wbC1rIHsKICAgIGNvbG9yOiAjYTcxZDVkCn0KCi5wbC1wZHMsIC5wbC1zLCAucGwtcyAucGwtcHNlIC5wbC1zMSwgLnBsLXNyLCAucGwtc3IgLnBsLWNjZSwgLnBsLXNyIC5wbC1zcmEsIC5wbC1zciAucGwtc3JlIHsKICAgIGNvbG9yOiAjMTgzNjkxCn0KCi5wbC12IHsKICAgIGNvbG9yOiAjZWQ2YTQzCn0KCi5wbC1pZCB7CiAgICBjb2xvcjogI2I1MmExZAp9CgoucGwtaWkgewogICAgYmFja2dyb3VuZC1jb2xvcjogI2I1MmExZDsKICAgIGNvbG9yOiAjZjhmOGY4Cn0KCi5wbC1zciAucGwtY2NlIHsKICAgIGNvbG9yOiAjNjNhMzVjCn0KCi5wbC1tbCB7CiAgICBjb2xvcjogIzY5M2ExNwp9CgoucGwtbWgsIC5wbC1taCAucGwtZW4sIC5wbC1tcyB7CiAgICBjb2xvcjogIzFkM2U4MTsKICAgIGZvbnQtd2VpZ2h0OiA3MDAKfQoKLnBsLW1xIHsKICAgIGNvbG9yOiB0ZWFsCn0KCi5wbC1taSB7CiAgICBjb2xvcjogIzMzMzsKICAgIGZvbnQtc3R5bGU6IGl0YWxpYwp9CgoucGwtbWIgewogICAgY29sb3I6ICMzMzMKfQoKLnBsLW1kIHsKICAgIGJhY2tncm91bmQtY29sb3I6ICNmZmVjZWM7CiAgICBjb2xvcjogI2JkMmMwMAp9CgoucGwtbWkxIHsKICAgIGJhY2tncm91bmQtY29sb3I6ICNlYWZmZWE7CiAgICBjb2xvcjogIzU1YTUzMgp9CgoucGwtbWRyIHsKICAgIGNvbG9yOiAjNzk1ZGEzCn0KCi5wbC1tbyB7CiAgICBjb2xvcjogIzFkM2U4MQp9CgoKICA8L3N0eWxlPgogIDxsaW5rIHJlbD0ic2hvcnRjdXQgaWNvbiIgdHlwZT0iaW1hZ2UvcG5nIiBocmVmPSJodHRwczovL2dubGV1cm9wZS5jb20vd3AtY29udGVudC91cGxvYWRzLzIwMTcvMTAvTmV0d29yay1QZW5ldHJhdGlvbi1UZXN0aW5nLnBuZyIgLz4KICA8bWV0YSBuYW1lPSJ2aWV3cG9ydCIgY29udGVudD0id2lkdGg9ZGV2aWNlLXdpZHRoLCBpbml0aWFsLXNjYWxlPTEsIHVzZXItc2NhbGFibGU9bm8iPgo8L2hlYWQ+Cgo8Ym9keT4KCjxkaXYgY2xhc3M9IndyYXBwZXIiPgoKICA8aGVhZGVyPgogICAgPGNlbnRlcj48aDE+PGltZyBzcmM9Imh0dHBzOi8vZ25sZXVyb3BlLmNvbS93cC1jb250ZW50L3VwbG9hZHMvMjAxNy8xMC9OZXR3b3JrLVBlbmV0cmF0aW9uLVRlc3RpbmcucG5nIiBhbHQ9Ikljb24iIGJvcmRlcj0iMCIgLz4gUmV2ZXJpZSA8YnI+UGVudGVzdCBSZXBvcnQ8L2gxPgogICAgPHA+VGhlIEF1dG8gUGVudGVzdCBUb29scyBNYWtlIFlvdXIgUmV2ZXJpZSBCZWNvbWUgUHJvZHVjdGl2ZTxicj48YnI+VmVyc2lvbiA6IDEuMCA8YnI+Q29kZWQgYnkgOiBCYWd1cyBXaXJhdG1hIEFkaTwvcD4KICAgIDx1bD4KICAgICAgPGxpPjxhIGhyZWY9ImJhZ3Vzd2lyYXRtYWFkaUBnbWFpbC5jb20iPlNlbmQgTWU8c3Ryb25nPkVtYWlsPC9zdHJvbmc+PC9hPjwvbGk+CiAgICAgIDxsaT48YSBocmVmPSJodHRwczovL2luc3RhZ3JhbS5jb20vYmFndXN3aXJhdG1hYWRpLyI+Rm9sbG93IE15PHN0cm9uZz5JbnN0YWdyYW08L3N0cm9uZz48L2E+PC9saT4KICAgICAgPGxpPjxhIGhyZWY9Imh0dHBzOi8vYmFndXN3aXJhdG1hYWRpLmdpdGh1Yi5pbyI+TXkgT2ZmaWNpYWw8c3Ryb25nPldlYnNpdGU8L3N0cm9uZz48L2E+PC9saT4KICAgIDwvdWw+Cjxicj48YnI+PC9jZW50ZXI+CiAgPC9oZWFkZXI+CgogIDxzZWN0aW9uPgogICAgPGgzPgogICAgICA8YSBpZD0id2hhdC1pcy1waHBtdXNzZWwiIGNsYXNzPSJhbmNob3IiIGhyZWY9IiN3aGF0LWlzLXBocG11c3NlbCIgYXJpYS1oaWRkZW49InRydWUiPgogICAgICAgIDxzcGFuIGNsYXNzPSJvY3RpY29uIG9jdGljb24tbGluayI+PC9zcGFuPgogICAgICA8L2E+CiAgICAgIDxzdHJvbmc+UmV2ZXJpZSAxLjAgPC9zdHJvbmc+CiAgICA8L2gzPgoKICAgIDxwPgogICAgSWYgeW91IHVzZSB0aGlzIHRvb2wgOjxicj4KPGJyPgoJMS4gTWVhbnMgeW91IGFncmVlIHRvIGFsbCBhcHBsaWNhYmxlIHJ1bGVzIGFuZCBsYXdzLjxicj4KCTIuIERvIG5vdCB1c2UgdGhpcyB0b29sIGluIGlsbGVnYWwgYWN0aXZpdGllcyBvZiBhbnkga2luZC48YnI+CgkzLiBFdmVyeSByaXNrIG9mIGFidXNlIG9mIHRoaXMgdG9vbCBpcyB5b3VyIG93biByZXNwb25zaWJpbGl0eS4KICAgIDwvcD4KICA8L3NlY3Rpb24+Cgo8c2VjdGlvbj4KPGltZyBzcmM9Imh0dHBzOi8vc3RhdGljLnRoZW5vdW5wcm9qZWN0LmNvbS9wbmcvODcwNjY2LTIwMC5wbmciIGhlaWdodD0iMjAwIiB3aWR0aD0iMjAwIj48YnI+CjxoMT5QZW50ZXN0ZXIgRGV0YWlsIDo8L2gxPgkKPGgyPk5hbWUgOiAKPGlmcmFtZSBzcmM9Im5hbWUudHh0IiBoZWlnaHQ9IjMwIiB3aWR0aD0iNzAwIj48L2lmcmFtZT4gPGJyPgoKPGgyPk9yZ2FuaXphdGlvbiA6IAo8aWZyYW1lIHNyYz0ib3JnLnR4dCIgaGVpZ2h0PSIzMCIgd2lkdGg9IjcwMCI+PC9pZnJhbWU+IDxicj4KCjxoMj5FbWFpbCA6IAo8aWZyYW1lIHNyYz0iZW1haWwudHh0IiBoZWlnaHQ9IjMwIiB3aWR0aD0iNzAwIj48L2lmcmFtZT4gPGJyPgoKPGgyPlBob25lIDogCjxpZnJhbWUgc3JjPSJwaG9uZS50eHQiIGhlaWdodD0iMzAiIHdpZHRoPSI3MDAiPjwvaWZyYW1lPiA8YnI+Cjwvc2VjdGlvbj4KCjxzZWN0aW9uPgo8aW1nIHNyYz0iaHR0cDovL2dhbWVkZXZhaS5jb20vd3AtY29udGVudC91cGxvYWRzLzIwMTgvMTEvc29mdHdhcmUtVGVzdGluZy5wbmciIGhlaWdodD0iMTUwIiB3aWR0aD0iMjAwIj48YnI+CjxoMT5UYXJnZXQgRGV0YWlsIDo8L2gxPgkKPGgyPkRvbWFpbiBOYW1lIDogCjxpZnJhbWUgc3JjPSJkb21haW4udHh0IiBoZWlnaHQ9IjMwIiB3aWR0aD0iNzAwIj48L2lmcmFtZT4gPGJyPgo8aDI+T3JnYW5pemF0aW9uIDogCjxpZnJhbWUgc3JjPSJ0b3JnLnR4dCIgaGVpZ2h0PSIzMCIgd2lkdGg9IjcwMCI+PC9pZnJhbWU+IDxicj4KPGgyPldlYiBDYXRlZ29yeSA6IAo8aWZyYW1lIHNyYz0id2ViLnR4dCIgaGVpZ2h0PSIzMCIgd2lkdGg9IjcwMCI+PC9pZnJhbWU+IDxicj4KPC9zZWN0aW9uPgoKICA8c2VjdGlvbj4KICAgIDxoMz4KICAgICAgPGEgaWQ9ImZlYXR1cmVzIiBjbGFzcz0iYW5jaG9yIiBocmVmPSIjZmVhdHVyZXMiIGFyaWEtaGlkZGVuPSJ0cnVlIj4KICAgICAgICA8c3BhbiBjbGFzcz0ib2N0aWNvbiBvY3RpY29uLWxpbmsiPjwvc3Bhbj4KICAgICAgPC9hPgogICAgIDxpbWcgc3JjPSJodHRwczovL3d3dy5tb3Rvcm9sYXNvbHV0aW9ucy5jb20vY29udGVudC9kYW0vbXNpL2ltYWdlcy9wcm9kdWN0cy9zbWFydC1wdWJsaWMtc2FmZXR5LXNvbHV0aW9ucy91c2VyLXJvbGUtaWNvbnMvY3JpbWVfYW5hbHlzdF9pY29uXzI0MngxNzRweC5wbmciIGhlaWdodD0iMjAwIiB3aWR0aD0iMjAwIj48YnI+CiAgICAgPGgxPkludGVsbGlnZW5jZSBHYXRoZXJpbmcgUmVwb3J0IDo8L2gxPjxicj4KICAgIDxoMj5XaG9pcyBPdXRwdXQ8YnI+PGJyPgoJPGlmcmFtZSBzcmM9Indob2lzLnR4dCIgaGVpZ2h0PSI0MDAiIHdpZHRoPSI3MDAiPjwvaWZyYW1lPiA8YnI+PGJyPgogICAgIAogICAgZG5zd2FsayBPdXRwdXQ8YnI+PGJyPgoJPGlmcmFtZSBzcmM9ImRuc3dhbGsudHh0IiBoZWlnaHQ9IjQwMCIgd2lkdGg9IjcwMCI+PC9pZnJhbWU+IDxicj48YnI+CgkKCW5tYXAgT3V0cHV0PGJyPjxicj4KCTxpZnJhbWUgc3JjPSJubWFwLnR4dCIgaGVpZ2h0PSI0MDAiIHdpZHRoPSI3MDAiPjwvaWZyYW1lPiA8YnI+PGJyPgoJCglkbWl0cnkgT3V0cHV0PGJyPjxicj4KCTxpZnJhbWUgc3JjPSJkbWl0cnkudHh0IiBoZWlnaHQ9IjQwMCIgd2lkdGg9IjcwMCI+PC9pZnJhbWU+IDxicj48YnI+CgkKCXdoYXR3ZWIgT3V0cHV0PGJyPjxicj4KCTxpZnJhbWUgc3JjPSJ3aGF0d2ViLnR4dCIgaGVpZ2h0PSI0MDAiIHdpZHRoPSI3MDAiPjwvaWZyYW1lPiA8YnI+PGJyPgoKICAgIDwvaDM+CgoKICA8c2VjdGlvbj4KICAgIDxoMz4KICAgICAgPGEgaWQ9ImZlYXR1cmVzIiBjbGFzcz0iYW5jaG9yIiBocmVmPSIjZmVhdHVyZXMiIGFyaWEtaGlkZGVuPSJ0cnVlIj4KICAgICAgICA8c3BhbiBjbGFzcz0ib2N0aWNvbiBvY3RpY29uLWxpbmsiPjwvc3Bhbj4KICAgICAgPC9hPgogICAgIDxpbWcgc3JjPSJodHRwOi8vd3d3LnRpM2ludGVsbGlnZW5jZS5jb20vd3AtY29udGVudC91cGxvYWRzLzIwMTcvMTEvSVQtU2VjdXJpdHktQXVkaXQucG5nIiBoZWlnaHQ9IjIwMCIgd2lkdGg9IjIwMCI+PGJyPgogICAgICA8aDE+U2VjdXJpdHkgQXVkaXQgPGJyPkFuZCBWdWxuZXJhYmlsaXR5IEFuYWx5c2lzIFJlcG9ydCA6PC9oMT4KICAgIDxoMj4KCVdhZncwMGYgT3V0cHV0IChXZWIgQXBwbGljYXRpb24gRmlyZXdhbGwgRGV0ZWN0b3IpPGJyPjxicj4KCTxpZnJhbWUgc3JjPSJ3YWZ3MDBmLnR4dCIgaGVpZ2h0PSI0MDAiIHdpZHRoPSI3MDAiPjwvaWZyYW1lPiA8YnI+PGJyPiAgICAKCiAgICBsYmQgT3V0cHV0IChMb2FkIEJhbGFuY2luZyBEZXRlY3Rvcik8YnI+PGJyPgoJPGlmcmFtZSBzcmM9ImxiZC50eHQiIGhlaWdodD0iNDAwIiB3aWR0aD0iNzAwIj48L2lmcmFtZT4gPGJyPjxicj4gIAoJCglzc2x5emUgT3V0cHV0IChTU0wgQXVkaXQgMSk8YnI+PGJyPgoJPGlmcmFtZSBzcmM9InNzbHl6ZS50eHQiIGhlaWdodD0iNDAwIiB3aWR0aD0iNzAwIj48L2lmcmFtZT4gPGJyPjxicj4gIAoJCgl0bHNzbGVkIE91dHB1dCAoU1NMIEF1ZGl0IDIpPGJyPjxicj4KCTxpZnJhbWUgc3JjPSJ0bHNzbGVkLnR4dCIgaGVpZ2h0PSI0MDAiIHdpZHRoPSI3MDAiPjwvaWZyYW1lPiA8YnI+PGJyPiAgICAKCQoJYXV0b21hdGVyIE91dHB1dCAoVnVsbmVyYWJpbGl0eSBTY2FubmVyIDEpPGJyPjxicj4KCTxpZnJhbWUgc3JjPSJhdXRvbWF0ZXIudHh0IiBoZWlnaHQ9IjQwMCIgd2lkdGg9IjcwMCI+PC9pZnJhbWU+IDxicj48YnI+ICAKCglOaWt0byBPdXRwdXQgKFZ1bG5lcmFiaWxpdHkgU2Nhbm5lciAyKTxicj48YnI+Cgk8aWZyYW1lIHNyYz0ibmlrdG8udHh0IiBoZWlnaHQ9IjQwMCIgd2lkdGg9IjcwMCI+PC9pZnJhbWU+IDxicj48YnI+ICAKCgkKCTwvaDI+CiAgICA8L2gzPgoKPC9ib2R5Pgo8L2h0bWw+Cg== | base64 --decode  > $B/report.html
+sleep 1
+echo "report generated..."
+sleep 2
+echo "finalizing reporting..."
+sleep 2
+echo "User Identify..."
+zenity --forms --text=Reverie-1.0-Pentester-Detail --add-entry=Name > name.txt
+sleep 2
+zenity --forms --text=Reverie-1.0-Pentester-Detail --add-entry=Organization > org.txt
+sleep 2
+zenity --forms --text=Reverie-1.0-Pentester-Detail --add-entry=Email  > email.txt
+sleep 2
+zenity --forms --text=Reverie-1.0-Pentester-Detail --add-entry=Phone > phone.txt
+echo "User Identify Finished..."
+sleep 2
+echo "Target Identify..."
+zenity --forms --text=Reverie-1.0-Pentester-Target-Detail --add-entry=Domain-Name > domain.txt
+sleep 2
+zenity --forms --text=Reverie-1.0-Pentester-Target-Detail --add-entry=Organization > torg.txt
+sleep 2
+zenity --forms --text=Reverie-1.0-Pentester-Target-Detail --add-entry=Website-Category  > web.txt
+echo "Target Identify Finished..."
+sleep 2
+echo "pentest finished good job..."
+echo "-----------------------------------"
+echo "| Reverie 1.0 x Bagus Wiratma Adi |"
+echo "-----------------------------------"
