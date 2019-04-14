@@ -116,7 +116,7 @@ echo "automater scanning done..."
 sleep 2
 #nikto
 echo "starting nikto scanning..."
-nikto -h http://$A > $B/nikto.txt
+nikto -h $A > $B/nikto.txt
 echo "nikto scanning done..."
 sleep 2
 
