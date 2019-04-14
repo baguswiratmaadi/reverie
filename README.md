@@ -31,7 +31,7 @@ If you want to install reverie
 
 - 1.0  First Release
 
-# Pentest Tools Auto Executed With Cat-Nip
+# Pentest Tools Auto Executed With Reverie
 
 - Whois Lookup
 - DNSwalk
