@@ -65,7 +65,7 @@ echo "whois scanning done..."
 sleep 2
 #dnswalk
 echo "starting dnswalk scanning..." 
-dnswalk $A. > $B/dnswalk.txt
+dnswalk $A > $B/dnswalk.txt
 sleep 2
 echo "dnswalk scanning done..."
 sleep 2 
