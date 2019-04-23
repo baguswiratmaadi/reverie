@@ -29,9 +29,7 @@ If you want to install reverie
 
 # Changelog
 
-- 1.0 First Release
-
-- 1.1 Fixing Error In Nikto Command Line
+- 1.0 First Release And Fixing Error In Nikto Command Line
 
 # Pentest Tools Auto Executed With Reverie
 
